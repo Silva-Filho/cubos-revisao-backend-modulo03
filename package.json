@@ -1,0 +1,21 @@
+{
+    "name": "back-integral-revisao",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "nodemon ./src/index.js"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "express": "^4.17.3",
+        "jsonwebtoken": "^8.5.1",
+        "pg": "^8.7.3",
+        "yup": "^0.32.11",
+        "yup-locales": "^1.2.10"
+    },
+    "devDependencies": {
+        "dotenv": "^16.0.0",
+        "nodemon": "^2.0.15"
+    }
+}
