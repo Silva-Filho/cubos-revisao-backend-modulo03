@@ -10,6 +10,11 @@ const {
     validarSenhaUsuario, 
 } = require( "./middlewares/login" );
 const { verificaToken } = require( "./middlewares/auth" );
+const { 
+    validarBodyRequisicaoPostagem, 
+    verificarPostagemExiste 
+} = require( "./middlewares/postagens" );
+const { validarIdParams } = require( "./middlewares/idParams" );
 
 // Controllers
 const { cadastrar } = require( "./controllers/usuarios" );
@@ -46,10 +51,28 @@ router.get( "/", listarTodasPostagens );
 router.use( verificaToken );
 
 //  Postagens
-router.get( "/postagens", listarPostagensUsuario );
-router.post( "/postagens", registerPost );
-router.patch( "/postagens/:id", updatePost );
-router.delete( "/postagens/:id", excluirPostagem );
+router.post( 
+    "/postagens", 
+    validarBodyRequisicaoPostagem, 
+    registerPost 
+);
+router.get( 
+    "/postagens", 
+    listarPostagensUsuario 
+);
+router.patch( 
+    "/postagens/:id", 
+    validarIdParams, 
+    verificarPostagemExiste, 
+    validarBodyRequisicaoPostagem, 
+    updatePost 
+);
+router.delete( 
+    "/postagens/:id", 
+    validarIdParams, 
+    verificarPostagemExiste, 
+    excluirPostagem 
+);
 
 module.exports = {
     router
